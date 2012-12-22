@@ -8,6 +8,8 @@
 
 //const int Xbounds[8] ={160,0,0,60,60,115,120,145};
 //const int Ybounds[8] ={160,160,140,145,125,120,130,150};
+
+//These are hard-coded boudnaries defined by walls and furniture onto which the laser should not project
 const float Xbounds[9] ={-30,30,60,20,25,-10,-20,-20,-25};
 const float Ybounds[9] ={50,50,50,100,300,300,200,70,55};
 
@@ -22,12 +24,14 @@ int ledPin=13;
 int currentX=0;
 int currentY=75;
 
-float H=33.75;
+float H=33.75; //height off of ground
 float pi=3.14159;
 
 float holdY=0;
 
-
+//this is a method to calculate if the line drawn by the laser's current position
+//and its newly (randomly) chosen position intersect with any of the lines defined
+//by the hard coded boundaries. That is, if it leaves the working area.
 boolean doIntersect(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
 	//it is only necessary to test if numerator1/denominator and numerator2/denominator lie between 0 and 1.
 	//If both lie within the range of 0 to 1 then the intersection point is on both lines
